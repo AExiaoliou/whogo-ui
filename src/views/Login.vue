@@ -5,7 +5,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+}
 </script>
 
 <style scoped>
@@ -18,7 +20,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.05);
 }
 .Login-form {
   width: 420px;
