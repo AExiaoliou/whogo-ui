@@ -1,12 +1,50 @@
 <template>
   <div class="Login-form-mask">
-    <el-form class="Login-form"></el-form>
+    <el-form
+      :model="login"
+      status-icon
+      :rules="rules"
+      ref="login"
+      :label-position="right"
+      label-width="80px"
+      class="Login-form"
+    >
+      <el-form-item label="用户名" prop="username">
+        <el-input auto-complete="false" v-model="login.username"></el-input>
+      </el-form-item>
+      <el-form-item label="密码" prop="password">
+        <el-input auto-complete="false" v-model="login.password"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+        <el-button @click="resetForm('ruleForm')">重置</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
-
+  data () {
+    return {
+      login: {
+        username: '',
+        password: ''
+      },
+      rules: {
+        username: [{ require: true, message: '请输入用户名' }],
+        password: [{ require: true, message: '请输入密码' }]
+      }
+    }
+  },
+  methods: {
+    submitForm (formName) {
+      alert('登录了, 可能吧')
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+    }
+  }
 }
 </script>
 
@@ -26,7 +64,7 @@ export default {
   width: 420px;
   border-radius: 8px;
   box-shadow: 0 0 6px rgb(0 0 0 / 10%);
-  padding: 25px 45px 40px;
+  padding: 25px 25px 40px 0px;
   box-sizing: border-box;
   position: relative;
 }
