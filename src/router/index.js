@@ -11,20 +11,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: '主页',
-      component: HelloWorld
+      alias: '/home',
+      name: 'home',
+      component: Home
     }, {
       path: '/login',
-      name: '登录',
+      name: 'login',
       component: Login
     }, {
-      path: '/:pathMatch(.*)*',
-      name: '404 Not Found',
-      component: NotFound
-    }, {
       path: '/test',
-      name: '测试页面',
+      name: 'test',
       component: HelloWorld
+    }, {
+      path: '/:pathMatch(.*)*',
+      alias: '/404',
+      name: 'notfound',
+      component: NotFound
     }
   ]
 })
