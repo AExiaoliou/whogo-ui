@@ -16,8 +16,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  position: relative;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
