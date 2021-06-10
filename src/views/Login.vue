@@ -66,7 +66,7 @@ export default {
   width: 420px;
   border-radius: 8px;
   box-shadow: 0 0 6px rgb(0 0 0 / 10%);
-  padding: 25px 25px 40px 0px;
+  padding: 25px 25px 25px 0px;
   box-sizing: border-box;
   position: relative;
 }
