@@ -9,7 +9,7 @@
       <a class="Header-link" href="/#" style="margin: auto">Logo</a>
     </div>
     <div class="Header-item">
-      <img src="@/assets/face.png" alt="" />
+      <img src="@/assets/face.png" alt="" height="20" width="20" class="avatar-user"/>
     </div>
   </header>
 </template>
