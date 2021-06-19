@@ -33,22 +33,14 @@ export default {
     var validatePassword = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'))
-      } else {
-        if (this.login.checkPass !== '') {
-          this.$refs.login.validateField('checkPass')
-        }
-        callback()
       }
+      callback()
     }
     var validateUsername = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入用户名'))
-      } else {
-        if (this.login.checkPass !== '') {
-          this.$refs.login.validateField('checkPass')
-        }
-        callback()
       }
+      callback()
     }
     return {
       login: {

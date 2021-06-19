@@ -2,7 +2,7 @@
   <header class="Header">
     <div class="Header-item">
       <div class="Header-link">
-        <i class="el-icon-more"></i>
+        <i class="el-icon-more" @click="sideCollapse"></i>
       </div>
     </div>
     <div class="Header-item" style="flex: auto">
@@ -16,7 +16,12 @@
 
 <script>
 export default {
-  name: 'nav-bar'
+  name: 'nav-bar',
+  methods: {
+    sideCollapse () {
+      this.$store.commit('sideCollapse')
+    }
+  }
 }
 </script>
 
@@ -33,6 +38,7 @@ export default {
   left: 0;
   z-index: 32;
   padding: 16px;
+  height: 64px;
   font-size: 14px;
   line-height: 1.5;
   color: black;

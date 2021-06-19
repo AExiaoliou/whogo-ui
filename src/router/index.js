@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/views/Home.vue'
-import Login from '@/views/Login.vue'
-import NotFound from '@/views/NotFound.vue'
-import HelloWorld from '@/views/HelloWorld.vue'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
+import NotFound from '@/views/NotFound'
+import Test from '@/views/Test'
 
 Vue.use(Router)
 
@@ -21,7 +21,7 @@ export default new Router({
     }, {
       path: '/test',
       name: 'test',
-      component: HelloWorld
+      component: Test
     }, {
       path: '/:pathMatch(.*)*',
       alias: '/404',
