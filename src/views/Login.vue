@@ -83,5 +83,6 @@ export default {
   padding: 25px 25px 0px 0px;
   box-sizing: border-box;
   position: relative;
+  background: rgba(255, 255, 255, 0.75);
 }
 </style>
