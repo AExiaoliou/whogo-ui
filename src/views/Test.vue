@@ -7,7 +7,8 @@
     <br>
     <p>isSideCollapse_this$store = {{ isSideCollapse }}</p>
     <p>isSideCollapse_importstore = {{ isSideCollapse_importstore }}</p>
-    <img src="@/assets/logo.png">
+    <br>
+    <el-button @click="changeLang">测试i18n切换(中文,English) {{ $t('test') }}</el-button>
   </div>
 </template>
 
@@ -22,10 +23,16 @@ export default {
   },
   computed: {
     isSideCollapse () {
-      return this.$store.state.isSideCollapse
+      return this.$store.state.app.isSideCollapse
     },
     isSideCollapse_importstore () {
-      return store.state.isSideCollapse
+      return store.state.app.isSideCollapse
+    }
+  },
+  methods: {
+    changeLang () {
+      var lang = this.$i18n.locale
+      this.$i18n.locale = (lang === 'zh_cn') ? 'en_us' : 'zh_cn'
     }
   }
 }

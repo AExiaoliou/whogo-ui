@@ -3,5 +3,6 @@
     "password": "密码",
     "username": "用户名",
     "login": "登录"
-  }
+  },
+  "test": "测试"
 }

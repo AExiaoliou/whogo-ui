@@ -3,5 +3,6 @@
     "password": "password",
     "username": "username",
     "login": "login"
-  }
+  },
+  "test": "test"
 }

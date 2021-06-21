@@ -9,10 +9,10 @@
       label-width="80px"
       class="Login-form"
     >
-      <el-form-item label="用户名" prop="username">
+      <el-form-item :label="$t('login.username')" prop="username">
         <el-input auto-complete="false" v-model="login.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item :label="$t('login.password')" prop="password">
         <el-input type="password" auto-complete="false" v-model="login.password"></el-input>
       </el-form-item>
       <div>
