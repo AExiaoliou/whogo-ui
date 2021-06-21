@@ -1,6 +1,6 @@
 <template>
-  <aside>
-    <el-menu class="Sider" :collapse="isSideCollapse">
+  <aside class="Sider">
+    <el-menu class="menu" :collapse="isSideCollapse">
       <el-menu-item>abc</el-menu-item>
       <el-menu-item><router-link to="/test">totest</router-link></el-menu-item>
     </el-menu>
@@ -12,10 +12,7 @@ export default {
   name: 'side-bar',
   computed: {
     isSideCollapse () {
-      console.log('try get state')
-      const tmp = this.$store.state.app.isSideCollapse
-      console.log(tmp)
-      return tmp
+      return this.$store.state.app.isSideCollapse
     }
   }
 }
@@ -23,16 +20,22 @@ export default {
 
 <style>
 .Sider {
+  position: fixed;
+  z-index: 10;
+  margin: 0;
   top: 64px;
   left: 0;
   bottom: 0;
   margin: 0;
+  overflow-y: auto;
 }
-.Sider:not(.el-menu--collapse) {
-  width: 200px;
+.menu{
   min-height: 400px;
 }
-.Sider:is(.el-menu--collapse) {
+.menu:not(.el-menu--collapse) {
+  width: 200px;
+}
+.menu:is(.el-menu--collapse) {
   /* wait for code now */
 }
 </style>
