@@ -3,8 +3,8 @@
     <nav-bar></nav-bar>
     <div class="top-mask side-content">
       <side-bar></side-bar>
-      <main class="page page-mask" style="display: block">
-        content
+      <main class="page page-mask">
+        <router-view />
       </main>
     </div>
   </div>
@@ -36,5 +36,9 @@ export default {
 .page-mask {
   background: rgba(0, 0, 0, 0.05);
   flex: 1;
+}
+
+.el-menu-item {
+  border-bottom: solid 1px #e6e6e6;
 }
 </style>

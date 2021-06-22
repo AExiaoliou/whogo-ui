@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 import Test from '@/views/Test'
+import Welcome from '@/views/Welcome'
 
 Vue.use(Router)
 
@@ -13,7 +14,14 @@ export default new Router({
       path: '/',
       alias: '/home',
       name: 'home',
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: 'welcome',
+          alias: '',
+          component: Welcome
+        }
+      ]
     }, {
       path: '/login',
       name: 'login',
