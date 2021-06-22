@@ -2,7 +2,7 @@
   <header class="Header">
     <div class="Header-item">
       <div class="Header-link">
-        <i class="el-icon-more" @click="sideCollapse"></i>
+        <i :class="foldIcon" @click="sideCollapse"></i>
       </div>
     </div>
     <div class="Header-item" style="flex: auto">
@@ -26,6 +26,11 @@ export default {
   methods: {
     sideCollapse () {
       this.$store.commit('sideCollapse')
+    }
+  },
+  computed: {
+    foldIcon () {
+      return this.$store.state.app.isSideCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'
     }
   }
 }

@@ -1,8 +1,8 @@
 <template>
   <aside class="Sider">
-    <el-menu class="menu" :collapse="isSideCollapse">
-      <el-menu-item>abc</el-menu-item>
-      <el-menu-item><router-link to="/test">totest</router-link></el-menu-item>
+    <el-menu class="menu" :collapse="isSideCollapse" router="ture">
+      <el-menu-item index="/dashboard">系统监控</el-menu-item>
+      <el-menu-item index="/test">test</el-menu-item>
     </el-menu>
   </aside>
 </template>
@@ -35,6 +35,6 @@ export default {
   width: 200px;
 }
 .menu:is(.el-menu--collapse) {
-  /* wait for code now */
+  width: 0;
 }
 </style>
