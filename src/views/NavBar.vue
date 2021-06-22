@@ -5,8 +5,11 @@
         <i :class="foldIcon" @click="sideCollapse"></i>
       </div>
     </div>
-    <div class="Header-item" style="flex: auto">
-      <a class="Header-link" href="/#" style="margin-left:20px">主页</a>
+    <div class="Header-item" style="margin-left:20px">
+      <router-link class="Header-link" to="/empty" >主页</router-link>
+    </div>
+    <div class="Header-item" style="flex:auto; margin-left:20px">
+      <el-button>搜索占位</el-button>
     </div>
     <div class="Heder-item" style="margin-right: 20px">
       <el-button>主题占位</el-button>
@@ -24,11 +27,13 @@
 export default {
   name: 'nav-bar',
   methods: {
+    // 更新侧边栏折叠状态
     sideCollapse () {
       this.$store.commit('sideCollapse')
     }
   },
   computed: {
+    // 根据侧边栏折叠状态更新图标
     foldIcon () {
       return this.$store.state.app.isSideCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'
     }
