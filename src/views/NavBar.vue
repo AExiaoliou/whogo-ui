@@ -6,7 +6,13 @@
       </div>
     </div>
     <div class="Header-item" style="flex: auto">
-      <a class="Header-link" href="/#" style="margin: auto">Logo</a>
+      <a class="Header-link" href="/#" style="margin-left:20px">主页</a>
+    </div>
+    <div class="Heder-item" style="margin-right: 20px">
+      <el-button>主题占位</el-button>
+    </div>
+    <div class="Heder-item" style="margin-right: 20px">
+      <el-button>语言占位</el-button>
     </div>
     <div class="Header-item">
       <img src="@/assets/face.png" alt="" height="20" width="20" class="avatar-user"/>

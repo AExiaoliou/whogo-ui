@@ -1,6 +1,6 @@
 export default {
   state: {
-    isSideCollapse: false
+    isSideCollapse: true
   },
   mutations: {
     sideCollapse (state) {

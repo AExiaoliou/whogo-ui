@@ -20,17 +20,16 @@ export default {
 
 <style>
 .Sider {
-  position: fixed;
   z-index: 10;
   margin: 0;
-  top: 64px;
   left: 0;
   bottom: 0;
   margin: 0;
   overflow-y: auto;
 }
-.menu{
+.menu {
   min-height: 400px;
+  bottom: 0;
 }
 .menu:not(.el-menu--collapse) {
   width: 200px;

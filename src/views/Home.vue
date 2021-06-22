@@ -1,7 +1,12 @@
 <template>
   <div>
     <nav-bar></nav-bar>
-    <side-bar></side-bar>
+    <div class="top-mask side-content">
+      <side-bar></side-bar>
+      <main class="page page-mask" style="display: block">
+        content
+      </main>
+    </div>
   </div>
 </template>
 
@@ -14,5 +19,22 @@ export default {
 </script>
 
 <style>
-
+.top-mask {
+  position: fixed;
+  top: 64px;
+}
+.side-content {
+  display: flex;
+  justify-content: flex-start;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.page {
+  padding: 2em 2rem;
+}
+.page-mask {
+  background: rgba(0, 0, 0, 0.05);
+  flex: 1;
+}
 </style>

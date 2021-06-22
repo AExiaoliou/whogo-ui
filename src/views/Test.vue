@@ -4,7 +4,7 @@
     <router-link to="/home">home</router-link>
     <router-link to="/404">404 page</router-link>
     <router-link to="/login">login</router-link>
-    <br>
+    <el-divider />
     <p>isSideCollapse_this$store = {{ isSideCollapse }}</p>
     <p>isSideCollapse_importstore = {{ isSideCollapse_importstore }}</p>
     <br>
