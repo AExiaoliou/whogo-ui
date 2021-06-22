@@ -41,4 +41,8 @@ export default {
 .el-menu-item {
   border-bottom: solid 1px #e6e6e6;
 }
+
+.chart {
+  margin: auto;
+}
 </style>

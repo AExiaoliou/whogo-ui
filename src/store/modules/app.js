@@ -5,7 +5,7 @@ export default {
   mutations: {
     sideCollapse (state) {
       state.isSideCollapse = !state.isSideCollapse
-      console.log(state.isSideCollapse)
+      // console.log(state.isSideCollapse)
     }
   }
 }

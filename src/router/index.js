@@ -5,6 +5,7 @@ import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 import Test from '@/views/Test'
 import Welcome from '@/views/Welcome'
+import DashBoard from '@/views/DashBoard'
 
 Vue.use(Router)
 
@@ -20,6 +21,9 @@ export default new Router({
           path: 'welcome',
           alias: '',
           component: Welcome
+        }, {
+          path: 'dashboard',
+          component: DashBoard
         }
       ]
     }, {

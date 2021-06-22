@@ -3,7 +3,7 @@
     <div slot="header">
       欢迎
     </div>
-    <div v-for="o in 4" :key="o" class="text item">
+    <div v-for="o in 4" :key="o">
       {{ o + '. 快写代码' }}
     </div>
   </el-card>
