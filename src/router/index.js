@@ -5,7 +5,7 @@ import Login from '@/views/Login'
 import NotFound from '@/views/NotFound'
 import Test from '@/views/Test'
 import Welcome from '@/views/Welcome'
-import DashBoard from '@/views/DashBoard'
+import Monitor from '@/views/Monitor'
 
 Vue.use(Router)
 
@@ -21,20 +21,24 @@ export default new Router({
           path: 'welcome',
           alias: '',
           component: Welcome
-        }, {
-          path: 'dashboard',
-          component: DashBoard
+        },
+        {
+          path: 'monitor',
+          component: Monitor
         }
       ]
-    }, {
+    },
+    {
       path: '/login',
       name: 'login',
       component: Login
-    }, {
+    },
+    {
       path: '/test',
       name: 'test',
       component: Test
-    }, {
+    },
+    {
       path: '/:pathMatch(.*)*',
       alias: '/404',
       name: 'notfound',
