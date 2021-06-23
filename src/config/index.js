@@ -1,5 +1,5 @@
-export const baseUrl = 'http://localhost:8001'
 
 export default {
-  baseUrl
+  baseUrl: 'http://localhost:8001',
+  Mock: process.env.NODE_ENV !== 'production'
 }

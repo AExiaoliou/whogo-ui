@@ -9,7 +9,7 @@
     <p>isSideCollapse_importstore = {{ isSideCollapse_importstore }}</p>
     <el-divider />
     <el-button @click="changeLang">测试i18n切换(中文,English) {{ $t('test') }}</el-button>
-    <el-button @click="testAxios">测试axios, axdata = {{ axdata }}</el-button>
+    <el-button @click="testAxios">测试axios</el-button>
   </div>
 </template>
 
@@ -19,8 +19,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      axdata: null
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   computed: {
