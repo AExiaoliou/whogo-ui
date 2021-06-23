@@ -37,7 +37,7 @@ export default {
       this.$i18n.locale = (lang === 'zh_cn') ? 'en_us' : 'zh_cn'
     },
     testAxios () {
-      this.axdata = this.$api.test.test()
+      this.$api.test.test().then((res) => { alert(res.data) })
     }
   }
 }
