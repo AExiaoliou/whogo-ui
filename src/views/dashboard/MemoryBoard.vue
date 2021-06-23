@@ -4,7 +4,6 @@
 
 <script>
 import * as echarts from 'echarts'
-
 export default {
   props: {
     className: {
@@ -22,12 +21,14 @@ export default {
   },
   data () {
     return {
+      // 下面这行只是为了给个类型提示
+      // chart: echarts.init(this.$el)
       chart: null
     }
   },
   mounted () {
     this.$nextTick(() => {
-      this.init()
+      this.chart = this.init()
     })
   },
   beforeDestroy () {
@@ -39,19 +40,18 @@ export default {
   },
   methods: {
     init () {
-      this.chart = echarts.init(this.$el, 'macarons')
+      var chart = echarts.init(this.$el, 'macarons')
       // init chart
       var option = {
         xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          type: 'category'
         },
         yAxis: {
           type: 'value'
         },
         series: [
           {
+            symbol: 'none',
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             type: 'line',
             areaStyle: {}
@@ -59,7 +59,9 @@ export default {
         ]
       }
 
-      this.chart.setOption(option)
+      chart.setOption(option)
+
+      return chart
     }
   }
 }

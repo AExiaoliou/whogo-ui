@@ -7,8 +7,9 @@
     <el-divider />
     <p>isSideCollapse_this$store = {{ isSideCollapse }}</p>
     <p>isSideCollapse_importstore = {{ isSideCollapse_importstore }}</p>
-    <br>
+    <el-divider />
     <el-button @click="changeLang">测试i18n切换(中文,English) {{ $t('test') }}</el-button>
+    <el-button @click="testAxios">测试axios, axdata = {{ axdata }}</el-button>
   </div>
 </template>
 
@@ -18,7 +19,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      axdata: null
     }
   },
   computed: {
@@ -33,6 +35,9 @@ export default {
     changeLang () {
       var lang = this.$i18n.locale
       this.$i18n.locale = (lang === 'zh_cn') ? 'en_us' : 'zh_cn'
+    },
+    testAxios () {
+      this.axdata = this.$api.test.test()
     }
   }
 }

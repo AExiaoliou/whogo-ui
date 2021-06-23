@@ -7,12 +7,15 @@ import ElementUI from 'element-ui'
 import store from './store/index'
 import vuex from 'vuex'
 import i18n from './i18n'
+import api from './http'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI)
 Vue.use(vuex)
+Vue.use(api)
+require('./mock')
 
 /* eslint-disable no-new */
 new Vue({
