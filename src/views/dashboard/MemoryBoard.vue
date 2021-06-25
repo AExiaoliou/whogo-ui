@@ -60,7 +60,7 @@ export default {
         series: [
           {
             symbol: 'none',
-            data: [50],
+            data: this.data,
             type: 'line',
             areaStyle: {}
           }
