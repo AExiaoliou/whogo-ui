@@ -10,16 +10,18 @@
       <div solt="header">
         内存监控
       </div>
-      <memory-board />
+      <cpu-board />
     </el-card>
   </div>
 </template>
 
 <script>
+import CpuBoard from './dashboard/CpuBoard.vue'
 import MemoryBoard from './dashboard/MemoryBoard.vue'
 export default {
   components: {
-    MemoryBoard
+    MemoryBoard,
+    CpuBoard
   }
 }
 </script>

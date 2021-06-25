@@ -23,7 +23,8 @@ export default {
     return {
       // 下面这行只是为了给个类型提示
       // chart: echarts.init(this.$el)
-      chart: null
+      chart: null,
+      data: new Array(60)
     }
   },
   mounted () {
@@ -43,16 +44,23 @@ export default {
       var chart = echarts.init(this.$el, 'macarons')
       // init chart
       var option = {
+        animation: false,
         xAxis: {
-          type: 'category'
+          type: 'category',
+          boundaryGap: false
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
+          min: 0,
+          max: 100,
+          axisLabel: {
+            formatter: '{value}%'
+          }
         },
         series: [
           {
             symbol: 'none',
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [50],
             type: 'line',
             areaStyle: {}
           }
@@ -61,7 +69,27 @@ export default {
 
       chart.setOption(option)
 
+      setInterval(() => {
+        let shift = this.data.length >= 60
+        this.addData(shift)
+        chart.setOption({
+          series: [{
+            name: '成交',
+            data: this.data
+          }]
+        })
+      }, 1000)
+
       return chart
+    },
+    addData (shift) {
+      // get memory data from remote server
+      let memory = Math.random() * 100
+      this.data.push(memory)
+
+      if (shift) {
+        this.data.shift()
+      }
     }
   }
 }
