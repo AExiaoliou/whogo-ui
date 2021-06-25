@@ -74,7 +74,6 @@ export default {
         this.addData(shift)
         chart.setOption({
           series: [{
-            name: '成交',
             data: this.data
           }]
         })

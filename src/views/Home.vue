@@ -3,8 +3,10 @@
     <nav-bar></nav-bar>
     <div class="top-mask side-content">
       <side-bar></side-bar>
-      <main class="page page-mask">
-        <router-view />
+      <main class="page-mask">
+        <div class="page">
+          <router-view />
+        </div>
       </main>
     </div>
   </div>
@@ -31,9 +33,11 @@ export default {
   bottom: 0;
 }
 .page {
-  padding: 2em 2rem;
+  z-index: 9;
+  flex: 1;
 }
 .page-mask {
+  padding: 2em 2rem;
   background: rgba(0, 0, 0, 0.05);
   flex: 1;
 }

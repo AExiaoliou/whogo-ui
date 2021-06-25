@@ -60,7 +60,7 @@ export default {
             },
             pointer: {
               itemStyle: {
-                color: 'auto'
+                color: 'v'
               }
             },
             axisTick: {
@@ -80,7 +80,7 @@ export default {
               }
             },
             axisLabel: {
-              color: 'auto',
+              color: 'inherit',
               distance: 20,
               fontSize: 15
             },
@@ -90,11 +90,11 @@ export default {
                 let warn = 'unknown'
                 if (value < 30) warn = '低利用率'
                 else if (value < 70) warn = '中利用率'
-                else if (value < 100) warn = '高利用率'
+                else if (value < 85) warn = '高利用率'
                 else warn = '负载过高'
                 return warn
               },
-              color: 'auto',
+              color: 'inherit',
               fontSize: 15
             },
             data: [
@@ -113,12 +113,13 @@ export default {
         chart.setOption({
           series: [
             {
-              name: '成交',
-              data: this.data
+              data: [{
+                value: this.data
+              }]
             }
           ]
         })
-      }, 1000)
+      }, 3000)
 
       return chart
     },

@@ -1,12 +1,13 @@
 <template>
   <div style="display:flex; flex-direction: row;">
-    <el-card style="flex:0.5">
+    <el-card style="flex:1">
       <div solt="header">
         内存监控
       </div>
       <memory-board />
     </el-card>
-    <el-card style="flex:0.5">
+    <div class="block" />
+    <el-card style="flex:1">
       <div solt="header">
         内存监控
       </div>
@@ -26,4 +27,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.block {
+  width: 20px;
+}
+</style>
