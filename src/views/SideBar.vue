@@ -37,10 +37,20 @@ export default {
   min-height: 400px;
   bottom: 0;
 }
+@media screen and (max-width: 800px) {
+  .menu {
+    position: fixed;
+    top: 64px
+  }
+}
 .menu:not(.el-menu--collapse) {
   width: 200px;
 }
 .menu:is(.el-menu--collapse) {
   width: 0;
+}
+.menu:is(.el-menu--collapse) > .el-menu-item {
+  opacity: 0;
+  transition: opacity 2s;
 }
 </style>
