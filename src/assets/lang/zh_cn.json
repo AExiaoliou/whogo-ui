@@ -4,5 +4,8 @@
     "username": "用户名",
     "login": "登录"
   },
+  "nav": {
+    "switch": "切换语言"
+  },
   "test": "测试"
 }

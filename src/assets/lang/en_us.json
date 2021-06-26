@@ -4,5 +4,8 @@
     "username": "username",
     "login": "login"
   },
+  "nav": {
+    "switch": "Switch Language"
+  },
   "test": "test"
 }

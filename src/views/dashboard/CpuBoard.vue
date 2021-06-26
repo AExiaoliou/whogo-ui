@@ -24,7 +24,8 @@ export default {
       // 下面这行只是为了给个类型提示
       // chart: echarts.init(this.$el)
       chart: null,
-      data: 0
+      data: 0,
+      id: null
     }
   },
   mounted () {
@@ -38,6 +39,7 @@ export default {
     }
     this.chart.dispose()
     this.chart = null
+    clearInterval(this.id)
   },
   methods: {
     init () {
@@ -108,7 +110,7 @@ export default {
 
       chart.setOption(option)
 
-      setInterval(() => {
+      this.id = setInterval(() => {
         this.updateData()
         chart.setOption({
           series: [
