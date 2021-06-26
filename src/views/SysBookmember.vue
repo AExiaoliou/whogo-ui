@@ -3,13 +3,11 @@
     <el-table :data="tableData" border style="width: 100%">
       <el-table-column fixed prop="ID" label="ID" width="50">
       </el-table-column>
-      <el-table-column prop="name" label="书名" width="120"> </el-table-column>
-      <el-table-column prop="count" label="数量" width="120"> </el-table-column>
+      <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
       <el-table-column prop="create_by" label="创建用户" width="150">
       </el-table-column>
       <el-table-column prop="create_time" label="创建时间" width="200"> </el-table-column>
       <el-table-column prop="last_update_time" label="最近更新时间" width="120"> </el-table-column>
-      <el-table-column prop="isbn" label="ISBN" width="300"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="handleClick(scope.row)" type="text" size="small"
