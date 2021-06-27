@@ -20,17 +20,25 @@
         :title="$t('nav.switch')"
         trigger="click"
         offset="20">
-        <div class="flexbox-col flexbox-center">
-          <div class="transltion-pop-item" @click="changeLang('zh_cn')">中文</div>
-          <div class="transltion-pop-item" @click="changeLang('en_us')">English</div>
+        <div>
+          <div class="dropdown-divider" />
+          <span class="dropdown-item" @click="changeLang('zh_cn')">中文</span>
+          <div class="dropdown-divider" />
+          <span class="dropdown-item" @click="changeLang('en_us')">English</span>
         </div>
-        <i slot="reference" class="el-icon-fork-spoon" />
+        <i slot="reference" class="el-icon-fork-spoon clickable" />
       </el-popover>
     </div>
-    <div class="Header-item">
-      <img src="@/assets/face.png" alt="" height="20" width="20" class="avatar-user mr10 big-alittle clickable"/>
-      <i class="el-icon-caret-bottom Header-link clickable" />
-    </div>
+    <el-popover>
+      <div slot="reference" class="Header-item user-pop clickable">
+        <img src="@/assets/face.png" alt="" height="20" width="20" class="avatar-user mr10 big-alittle"/>
+        <i class="el-icon-caret-bottom Header-link"/>
+      </div>
+      <div>
+        <div class="dropdown-divider" />
+        <span class="dropdown-item">登出</span>
+      </div>
+    </el-popover>
   </header>
 </template>
 
@@ -99,5 +107,27 @@ export default {
 }
 .big-alittle {
   transform: scale(1.3);
+}
+.user-pop:hover > i {
+  color: rgba(255, 255, 255, 0.7);
+}
+.dropdown-divider {
+  border-top: 1px solid #e1e4e8;
+  display: block;
+  height: 0;
+  margin: 8px 0;
+}
+.dropdown-item {
+  color: #24292e;
+  display: block;
+  overflow: hidden;
+  padding: 4px 8px 4px 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .5s;
+}
+.dropdown-item:hover {
+  background-color: aqua;
 }
 </style>

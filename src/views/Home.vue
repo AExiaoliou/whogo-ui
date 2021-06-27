@@ -34,7 +34,7 @@ export default {
   bottom: 0;
 }
 .page {
-  z-index: 9;
+  z-index: 11;
   flex: 1;
 }
 .page-mask {

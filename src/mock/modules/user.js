@@ -373,7 +373,7 @@ export function findByName (params) {
       lastUpdateBy: 'admin',
       lastUpdateTime: '2018-08-14T03:11:11.000+0000',
       name: 'admin',
-      nickName: '超管',
+      nickName: '管理员',
       avatar: null,
       password: 'bd1718f058d8a02468134432b8656a86',
       salt: 'YzcmCZNvbXocrsz9dm8e',
@@ -383,7 +383,7 @@ export function findByName (params) {
       deptId: 4,
       delFlag: 0,
       deptName: '上海分公司',
-      roleNames: '超级管理员',
+      roleNames: '管理员',
       userRoles: [
         {
           id: 1,

@@ -10,16 +10,31 @@
     <el-divider />
     <el-button @click="changeLang">测试i18n切换(中文,English) {{ $t('test') }}</el-button>
     <el-button @click="testAxios">测试axios</el-button>
+    <el-divider>测试后端api, 默认是挂mockjs的, 生产环境会自动去除<br>如果不需要则在src/config里面改Mock属性</el-divider>
+    <el-button @click="testRemote">点击测试</el-button>
+    <el-radio-group v-model="httpMethod">
+      <el-radio label="get">GET</el-radio>
+      <el-radio label="post">POST</el-radio>
+    </el-radio-group>
+    <el-input autosize v-model="httpLink" />
+    <el-input autosize v-model="postData" placeholder="data, 如果需要的话"/>
+    <div>{{ httpRes }}</div>
   </div>
 </template>
 
 <script>
 import store from '../store'
+import axios from 'axios'
+import config from '@/config'
 export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      httpLink: '/test/test',
+      httpMethod: 'get',
+      postData: null,
+      httpRes: null
     }
   },
   computed: {
@@ -36,7 +51,13 @@ export default {
       this.$i18n.locale = (lang === 'zh_cn') ? 'en_us' : 'zh_cn'
     },
     testAxios () {
-      this.$api.test.test().then((res) => { alert(res.data) })
+      this.$api.test.test().then((res) => { alert(res.data.name) })
+    },
+    testRemote () {
+      axios({
+        url: config.baseUrl + this.httpLink,
+        method: this.httpMethod
+      }).then((res) => { this.httpRes = res.data })
     }
   }
 }

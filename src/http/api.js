@@ -11,6 +11,7 @@ import * as config from './modules/config'
 import * as log from './modules/log'
 import * as loginlog from './modules/loginlog'
 import * as test from './modules/test'
+import * as monitor from './modules/monitor'
 
 // 默认全部导出
 export default {
@@ -23,5 +24,6 @@ export default {
   config,
   log,
   loginlog,
+  monitor,
   test
 }

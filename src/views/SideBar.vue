@@ -1,12 +1,12 @@
 <template>
   <aside class="Sider">
     <el-menu class="menu" :collapse="isSideCollapse" router>
-      <el-menu-item index="/systeacher">教师管理</el-menu-item>
+      <el-menu-item index="/systeacher">教职工管理</el-menu-item>
       <el-menu-item index="/sysstudent">学生管理</el-menu-item>
-      <el-menu-item index="/syscafe">食堂管理</el-menu-item>
-      <el-menu-item index="/syscafemember">食堂人员管理</el-menu-item>
+      <el-menu-item index="/syscafe">食堂菜品管理</el-menu-item>
+      <el-menu-item index="/syscafemember">食堂会员管理</el-menu-item>
       <el-menu-item index="/sysbook">图书管理</el-menu-item>
-      <el-menu-item index="/sysbookmember">图书馆人员管理</el-menu-item>
+      <el-menu-item index="/sysbookmember">图书馆会员管理</el-menu-item>
       <el-menu-item index="/">通知公告</el-menu-item>
       <el-menu-item index="/">日志记录</el-menu-item>
       <el-menu-item index="/monitor">系统监控</el-menu-item>
@@ -18,6 +18,11 @@
 <script>
 export default {
   name: 'side-bar',
+  data () {
+    return {
+      testEnv: process.env.NODE_ENV !== 'production'
+    }
+  },
   computed: {
     isSideCollapse () {
       return this.$store.state.app.isSideCollapse
@@ -39,7 +44,7 @@ export default {
   min-height: 400px;
   bottom: 0;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1000px) {
   .menu {
     position: fixed;
     top: 64px
