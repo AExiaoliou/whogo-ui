@@ -12,7 +12,7 @@
     </div>
     <div class="Header-item flex-row ml10" style="flex:auto">
       <div class="search" :class="{ 'search--collapse': isSearchCollapse }" v-show="!isSearchCollapse" >
-        <el-input />
+        <el-input size="mini" class="mr10" />
       </div>
       <div>
         <i class="el-icon-search Header-link clickable" @click="isSearchCollapse = !isSearchCollapse"/>

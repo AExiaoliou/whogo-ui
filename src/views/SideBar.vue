@@ -39,6 +39,7 @@ export default {
   bottom: 0;
   margin: 0;
   overflow-y: auto;
+  overflow: hidden;
 }
 .menu {
   min-height: 400px;
