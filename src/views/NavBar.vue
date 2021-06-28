@@ -5,16 +5,20 @@
         <i class="big-alittle clickable" :class="$store.state.app.isSideCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'" @click="sideCollapse"></i>
       </div>
     </div>
-    <div class="Header-item" style="margin-left:20px">
-      <router-link class="Header-link" to="/empty" >主页</router-link>
+    <div class="Header-item ml10">
+      <router-link class="Header-link" to="/empty">
+        <img src="@/assets/whogo-sm.png" />
+      </router-link>
     </div>
-    <div class="Header-item" style="flex:auto; margin-left:20px">
-      <el-button>搜索占位</el-button>
+    <div class="Header-item flex-row ml10" style="flex:auto">
+      <div class="search" :class="{ 'search--collapse': isSearchCollapse }" v-show="!isSearchCollapse" >
+        <el-input />
+      </div>
+      <div>
+        <i class="el-icon-search Header-link clickable" @click="isSearchCollapse = !isSearchCollapse"/>
+      </div>
     </div>
-    <div class="Heder-item" style="margin-right: 20px">
-      <el-button>主题占位</el-button>
-    </div>
-    <div class="Heder-item" style="margin-right: 20px">
+    <div class="Heder-item mr20">
       <el-popover class="Header-link"
         placement="bottom"
         :title="$t('nav.switch')"
@@ -57,7 +61,7 @@ export default {
   },
   data () {
     return {
-      // translationVisable: false
+      isSearchCollapse: true
     }
   }
 }
@@ -129,5 +133,15 @@ export default {
 }
 .dropdown-item:hover {
   background-color: aqua;
+}
+.search {
+  display: flex;
+  flex-direction: column;
+  transition: all .5s;
+  width: 200px;
+}
+.search:is(.search--collapse) {
+  width: 0;
+  opacity: 0;
 }
 </style>
