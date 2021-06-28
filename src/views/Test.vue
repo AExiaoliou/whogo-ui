@@ -4,9 +4,8 @@
     <router-link to="/home">home</router-link>
     <router-link to="/404">404 page</router-link>
     <router-link to="/login">login</router-link>
-    <el-divider />
-    <p>isSideCollapse_this$store = {{ isSideCollapse }}</p>
-    <p>isSideCollapse_importstore = {{ isSideCollapse_importstore }}</p>
+    <el-divider>vuex 状态</el-divider>
+    <div>state = {{ vuexState }}</div>
     <el-divider />
     <el-button @click="changeLang">测试i18n切换(中文,English) {{ $t('test') }}</el-button>
     <el-button @click="testAxios">测试axios</el-button>
@@ -23,7 +22,6 @@
 </template>
 
 <script>
-import store from '../store'
 import axios from 'axios'
 import config from '@/config'
 export default {
@@ -38,11 +36,8 @@ export default {
     }
   },
   computed: {
-    isSideCollapse () {
-      return this.$store.state.app.isSideCollapse
-    },
-    isSideCollapse_importstore () {
-      return store.state.app.isSideCollapse
+    vuexState () {
+      return this.$store.state
     }
   },
   methods: {
