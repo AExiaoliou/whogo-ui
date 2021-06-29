@@ -127,8 +127,7 @@ export default {
     },
     updateData () {
       // get data from remote
-      let cpuload = Math.random() * 100
-      this.data = cpuload
+      this.$api.monitor.getSystem().then(res => { this.data = res.data.cpu.used })
     }
   }
 }

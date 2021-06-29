@@ -24,7 +24,7 @@ export default {
       // 下面这行只是为了给个类型提示
       // chart: echarts.init(this.$el)
       chart: null,
-      data: new Array(60),
+      data: [],
       id: null
     }
   },
@@ -49,7 +49,10 @@ export default {
         animation: false,
         xAxis: {
           type: 'category',
-          boundaryGap: false
+          boundaryGap: false,
+          inverse: true,
+          min: 0,
+          max: 60
         },
         yAxis: {
           type: 'value',
@@ -85,8 +88,10 @@ export default {
     },
     addData (shift) {
       // get memory data from remote server
-      let memory = Math.random() * 100
-      this.data.push(memory)
+      this.$api.monitor.getSystem().then(res => {
+        console.log(res.data.mem.usage)
+        this.data.push(res.data.mem.usage)
+      })
 
       if (shift) {
         this.data.shift()

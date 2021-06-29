@@ -10,6 +10,7 @@ import * as config from './modules/config'
 import * as log from './modules/log'
 import * as loginlog from './modules/loginlog'
 import * as test from './modules/test'
+import * as monitor from './modules/monitor'
 
 // 1. 开启/关闭[所有模块]拦截, 通过调[openMock参数]设置.
 // 2. 开启/关闭[业务模块]拦截, 通过调用fnCreate方法[isOpen参数]设置.
@@ -26,6 +27,7 @@ fnCreate(log, openMock)
 fnCreate(loginlog, openMock)
 fnCreate(login, openMock)
 fnCreate(test, openMock)
+fnCreate(monitor, openMock)
 
 /**
  * 创建mock模拟数据
