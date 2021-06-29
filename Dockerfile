@@ -1,8 +1,8 @@
 FROM node:12 as build-stage
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-RUN cnpm install
+RUN npm config set registry https://registry.npm.taobao.org
+RUN npm install
 COPY . .
 RUN npm run build
 
