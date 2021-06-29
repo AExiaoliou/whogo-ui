@@ -65,6 +65,7 @@ export default {
   methods: {
     submitForm (formName) {
       this.$api.login.login(this.loginForm).then((res) => {
+        console.log(res)
         alert(res.token)
         Cookies.set('token', res.token)
         this.$router.push('/')
@@ -75,8 +76,8 @@ export default {
     }
   },
   created () {
-    console.log('账号:')
-    console.log('密码:')
+    console.log('账号: admin')
+    console.log('密码: admin')
   }
 }
 </script>
