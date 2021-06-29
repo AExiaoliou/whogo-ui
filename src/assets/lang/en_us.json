@@ -2,6 +2,7 @@
   "login": {
     "password": "password",
     "username": "username",
+    "captcha": "captcha",
     "login": "login"
   },
   "nav": {

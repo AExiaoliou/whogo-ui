@@ -1,25 +1,29 @@
 <template>
   <div class="Login-form-mask">
     <el-form
-      :model="login"
+      :model="loginForm"
       status-icon
       :rules="rules"
       ref="login"
-      :label-position="right"
+      label-position="right"
       label-width="80px"
       class="Login-form"
     >
       <el-form-item :label="$t('login.username')" prop="username">
-        <el-input auto-complete="false" v-model="login.username"></el-input>
+        <el-input auto-complete="false" v-model="loginForm.username"></el-input>
       </el-form-item>
       <el-form-item :label="$t('login.password')" prop="password">
-        <el-input type="password" auto-complete="false" v-model="login.password"></el-input>
+        <el-input type="password" auto-complete="false" v-model="loginForm.password"></el-input>
       </el-form-item>
+      <div v-if="true" style="display: flex; flex-direction: row">
+        <el-form-item :label="$t('login.captcha')" prop="captcha">
+          <el-input auto-complete="false" v-model="loginForm.captcha"></el-input>
+        </el-form-item>
+        <img :src="captchaSrc" style="margin-left: 10px"/>
+      </div>
       <div>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('login')"
-            >登录</el-button
-          >
+          <el-button type="primary" @click="submitForm('login')">登录</el-button>
           <el-button @click="resetForm('login')">重置</el-button>
         </el-form-item>
       </div>
@@ -29,6 +33,7 @@
 
 <script>
 import Cookies from 'js-cookie'
+import config from '@/config'
 export default {
   data () {
     var validatePassword = (rule, value, callback) => {
@@ -44,19 +49,22 @@ export default {
       callback()
     }
     return {
-      login: {
+      loginForm: {
         username: '',
-        password: ''
+        password: '',
+        captcha: ''
       },
       rules: {
         username: [{ require: true, validator: validateUsername, message: '请输入用户名' }],
         password: [{ require: true, validator: validatePassword, message: '请输入密码' }]
-      }
+      },
+      captchaSrc: config.baseUrl + '/captcha.jpg',
+      doCap: process.env.NODE_ENV !== 'production'
     }
   },
   methods: {
     submitForm (formName) {
-      this.$api.login.login().then((res) => {
+      this.$api.login.login(this.loginForm).then((res) => {
         alert(res.token)
         Cookies.set('token', res.token)
         this.$router.push('/')
@@ -65,6 +73,10 @@ export default {
     resetForm (formName) {
       this.$refs[formName].resetFields()
     }
+  },
+  created () {
+    console.log('账号:')
+    console.log('密码:')
   }
 }
 </script>
