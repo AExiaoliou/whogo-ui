@@ -47,7 +47,7 @@ export default {
 }
 @media screen and (max-width: 1000px) {
   .menu {
-    position: fixed;
+    position: fixed!important;
     top: 64px
   }
 }
