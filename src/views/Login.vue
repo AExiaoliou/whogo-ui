@@ -29,7 +29,6 @@
 
 <script>
 import Cookies from 'js-cookie'
-import router from 'vue-router'
 export default {
   data () {
     var validatePassword = (rule, value, callback) => {
@@ -60,7 +59,7 @@ export default {
       this.$api.login.login().then((res) => {
         alert(res.token)
         Cookies.set('token', res.token)
-        router.push('/')
+        this.$router.push('/')
       })
     },
     resetForm (formName) {

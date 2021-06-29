@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const getSystem = () => {
   return axios({
-    url: 'monitor/system',
+    url: 'monitor/server',
     method: 'get'
   })
 }

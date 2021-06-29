@@ -1,6 +1,5 @@
 import axios from 'axios'
 import config from './config'
-// eslint-disable-next-line
 import Cookies from 'js-cookie'
 import router from '@/router'
 
@@ -15,14 +14,14 @@ export default function $axios (options) {
     // request 请求拦截器
     instance.interceptors.request.use(
       (config) => {
-        // let token = Cookies.get('token')
-        // // 发送请求时携带token
-        // if (token) {
-        //   config.headers.token = token
-        // } else {
-        //   // 重定向到登录页面
-        //   router.push('/login')
-        // }
+        let token = Cookies.get('token')
+        // 发送请求时携带token
+        if (token) {
+          config.headers.token = token
+        } else {
+          // 重定向到登录页面
+          router.push('/login')
+        }
         return config
       },
       (error) => {
