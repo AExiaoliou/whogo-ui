@@ -15,11 +15,11 @@
       <el-form-item :label="$t('login.password')" prop="password">
         <el-input type="password" auto-complete="false" v-model="loginForm.password"></el-input>
       </el-form-item>
-      <div v-if="true" style="display: flex; flex-direction: row">
+      <div v-if="false" style="display: flex; flex-direction: row">
         <el-form-item :label="$t('login.captcha')" prop="captcha">
           <el-input auto-complete="false" v-model="loginForm.captcha"></el-input>
         </el-form-item>
-        <img :src="captchaSrc" style="margin-left: 10px"/>
+        <img :src="captchaSrc" style="margin-left: 10px" />
       </div>
       <div>
         <el-form-item>
@@ -64,12 +64,32 @@ export default {
   },
   methods: {
     submitForm (formName) {
-      this.$api.login.login(this.loginForm).then((res) => {
-        console.log(res)
-        alert(res.token)
-        Cookies.set('token', res.token)
-        this.$router.push('/')
+      const loading = this.$loading({
+        lock: true,
+        text: '加载中',
+        spinner: 'el-icon-loading',
+        background: 'rgba(0, 0, 0, 0.7)'
       })
+      let userInfo = {
+        account: this.loginForm.username,
+        password: this.loginForm.password,
+        captcha: this.loginForm.captcha
+      }
+      this.$api.login
+        .login(userInfo)
+        .then((res) => {
+          Cookies.set('token', res.data.token) // 放置token到Cookie
+          sessionStorage.setItem('user', userInfo.account) // 保存用户到本地会话
+          // this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
+          this.$router.push('/') // 登录成功，跳转到主页
+        })
+        .catch((res) => {
+          this.$message({
+            message: res.message,
+            type: 'error'
+          })
+        })
+      loading.close()
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
