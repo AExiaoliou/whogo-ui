@@ -13,6 +13,13 @@ import * as loginlog from './modules/loginlog'
 import * as test from './modules/test'
 import * as monitor from './modules/monitor'
 
+import * as student from './modules/student'
+import * as teacher from './modules/teacher'
+import * as cafe from './modules/cafe'
+import * as cafemember from './modules/cafemember'
+import * as book from './modules/book'
+import * as bookmember from './modules/bookmember'
+
 // 默认全部导出
 export default {
   login,
@@ -25,5 +32,11 @@ export default {
   log,
   loginlog,
   monitor,
+  student,
+  teacher,
+  cafe,
+  cafemember,
+  book,
+  bookmember,
   test
 }
