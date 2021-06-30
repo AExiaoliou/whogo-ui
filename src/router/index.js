@@ -10,7 +10,6 @@ import SysStudent from '@/views/SysStudent'
 import SysTeacher from '@/views/SysTeacher'
 import Test from '@/views/Test'
 import Welcome from '@/views/Welcome'
-import Cookies from 'js-cookie'
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -79,10 +78,8 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !sessionStorage.getItem('user') && !Cookies.get('token')) {
+  if (to.name !== 'login' && !sessionStorage.getItem('user')) {
     next({name: 'login'})
-  } else if (to.name === 'login') {
-    next('/')
   } else next()
 })
 
