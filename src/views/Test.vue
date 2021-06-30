@@ -23,7 +23,7 @@
 
 <script>
 import axios from '@/http/axios'
-import config from '@/config'
+import Cookies from 'js-cookie'
 export default {
   name: 'HelloWorld',
   data () {
@@ -49,10 +49,26 @@ export default {
       this.$api.test.test().then((res) => { alert(res.data.name) })
     },
     testRemote () {
-      axios({
-        url: config.baseUrl + this.httpLink,
-        method: this.httpMethod
-      }).then((res) => { this.httpRes = res.data })
+      console.log('测试')
+      console.log({
+        url: this.httpLink,
+        method: this.httpMethod,
+        data: this.data
+      })
+      console.log('cookie')
+      console.log(Cookies.get())
+      if (this.httpMethod === 'get') {
+        axios({
+          url: this.httpLink,
+          method: this.httpMethod
+        }).then((res) => { this.httpRes = res.data })
+      } else {
+        axios({
+          url: this.httpLink,
+          method: this.httpMethod,
+          data: this.data
+        }).then((res) => { this.httpRes = res.data })
+      }
     }
   }
 }
