@@ -68,9 +68,17 @@ export default {
     }
   },
   created () {
+    const loading = this.$loading({
+      target: document.getElementById('page'),
+      lock: true,
+      text: '加载中',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
     this.$api.monitor.getSystem().then(res => {
       this.jvm = res.data.jvm
     })
+    loading.close()
   }
 }
 </script>

@@ -3,7 +3,7 @@
     <nav-bar></nav-bar>
     <div class="top-mask side-content">
       <side-bar></side-bar>
-      <main class="page-mask">
+      <main id="page" class="page-mask">
         <div class="page">
           <router-view />
         </div>
