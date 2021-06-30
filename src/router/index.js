@@ -10,6 +10,7 @@ import SysStudent from '@/views/SysStudent'
 import SysTeacher from '@/views/SysTeacher'
 import Test from '@/views/Test'
 import Welcome from '@/views/Welcome'
+import Cookies from 'js-cookie'
 import Vue from 'vue'
 import Router from 'vue-router'
 
@@ -75,6 +76,14 @@ const router = new Router({
       component: NotFound
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'login' && !sessionStorage.getItem('user') && !Cookies.get('token')) {
+    next({name: 'login'})
+  } else if (to.name === 'login') {
+    next('/')
+  } else next()
 })
 
 export default router
