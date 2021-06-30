@@ -47,6 +47,12 @@ export default {
       // init chart
       var option = {
         animation: false,
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'auto'
+          }
+        },
         xAxis: {
           type: 'category',
           boundaryGap: false,
@@ -66,6 +72,7 @@ export default {
           {
             symbol: 'none',
             data: [0],
+            smooth: true,
             type: 'line',
             areaStyle: {}
           }
@@ -82,14 +89,14 @@ export default {
             data: this.data
           }]
         })
-      }, 1000)
+      }, 2000)
 
       return chart
     },
     addData (shift) {
       // get memory data from remote server
       this.$api.monitor.getSystem().then(res => {
-        console.log(res.data.mem.usage)
+        // console.log(res.data.mem.usage)
         this.data.push(res.data.mem.usage)
       })
 

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from '@/http/axios'
 import config from '@/config'
 export default {
   name: 'HelloWorld',

@@ -25,6 +25,6 @@ export default {
   opacity: 0;
 }
 .avatar-user {
-    border-radius: 50%!important;
+  border-radius: 50%!important;
 }
 </style>

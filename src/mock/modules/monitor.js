@@ -7,7 +7,8 @@ export function server () {
         cpuNum: 1,
         total: 9900,
         sys: 0,
-        used: 3.03,
+        // used: 3.03,
+        used: Math.random() * 100,
         wait: 0,
         free: 96.97
       },
@@ -15,7 +16,8 @@ export function server () {
         total: 1.79,
         used: 0.97,
         free: 0.83,
-        usage: 53.82
+        // usage: 53.82
+        usage: Math.random() * 100
       },
       jvm: {
         total: 66.53,

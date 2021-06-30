@@ -64,14 +64,13 @@ export default {
   },
   data () {
     return {
-      jvm: {
-        name: 'name',
-        version: '1.8',
-        startTime: '1998年',
-        runTime: '0.1s',
-        home: '18栋___'
-      }
+      jvm: null
     }
+  },
+  created () {
+    this.$api.monitor.getSystem().then(res => {
+      this.jvm = res.data.jvm
+    })
   }
 }
 </script>

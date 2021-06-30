@@ -60,6 +60,9 @@ export default {
                 ]
               }
             },
+            tooltip: {
+              trigger: 'axis'
+            },
             pointer: {
               itemStyle: {
                 color: 'v'
@@ -94,7 +97,7 @@ export default {
                 else if (value < 70) warn = '中利用率'
                 else if (value < 85) warn = '高利用率'
                 else warn = '负载过高'
-                return warn
+                return warn + '\n' + value + '%'
               },
               color: 'inherit',
               fontSize: 15
