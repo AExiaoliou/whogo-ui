@@ -40,13 +40,15 @@
       </div>
       <div>
         <div class="dropdown-divider" />
-        <span class="dropdown-item">登出</span>
+        <span @click="logout" class="dropdown-item">登出</span>
       </div>
     </el-popover>
   </header>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+import router from '@/router'
 export default {
   name: 'nav-bar',
   methods: {
@@ -57,6 +59,11 @@ export default {
     changeLang (lang) {
       console.log(lang)
       this.$i18n.locale = lang
+    },
+    logout () {
+      sessionStorage.removeItem('user')
+      Cookies.remove('token')
+      router.push('/login')
     }
   },
   data () {
