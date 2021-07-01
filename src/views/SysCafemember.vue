@@ -104,7 +104,7 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       // fetch data
-      this.$api.book.findPage(this.pageForm).then((res) => {
+      this.$api.cafemember.findPage(this.pageForm).then((res) => {
         this.data = res.data
 
         this.tableData = this.data.content
