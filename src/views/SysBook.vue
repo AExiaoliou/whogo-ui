@@ -4,6 +4,7 @@
     <el-card>
       <el-table :data="tableData" stripe>
         <el-table-column fixed prop="id" width="100">
+          <!-- 新增 -->
           <template slot="header">
             <el-button @click="createPrepare" size="small" type="primary">新增...</el-button>
           </template>
@@ -18,6 +19,7 @@
           <template slot="header">
             <el-input size="mini" placeholder="输入关键字搜索" />
           </template>
+          <!-- 编辑删除 -->
           <template slot-scope="scope">
             <el-button @click="updatePrepare(scope.row)" type="primary" size="small">编辑</el-button>
             <el-popconfirm title="确定删除这段内容吗?" @confirm="delete_(scope.row)">
