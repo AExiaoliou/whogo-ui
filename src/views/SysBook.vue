@@ -20,7 +20,9 @@
           </template>
           <template slot-scope="scope">
             <el-button @click="updatePrepare(scope.row)" type="primary" size="small">编辑</el-button>
-            <el-button @click="delete_(scope.row)" type="danger" size="small">删除</el-button>
+            <el-popconfirm title="确定删除这段内容吗?" @confirm="delete_(scope.row)">
+              <el-button slot="reference" type="danger" size="small">删除</el-button>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
@@ -59,14 +61,18 @@ import config from '@/config'
 export default {
   data () {
     return {
+      // 请求响应
       data: null,
+      // 表格数据
       tableData: [],
+      // 分页信息
       pagination: {
         pageSize: 5,
         pageCount: 2,
         total: 1,
         current: 1
       },
+      // 表单
       submitForm: {
         id: 0,
         name: '',
@@ -77,15 +83,20 @@ export default {
         last_update_by: '',
         last_update_time: ''
       },
+      // 分页请求
       pageForm: config.defaultPage,
+      // 是否打开表单
       isOpenForm: false,
+      // CRUD 类型
       formType: 'create'
     }
   },
   created () {
+    // 页面创建完成后更新数据
     this.updateData()
   },
   methods: {
+    // 更新数据
     updateData () {
       // Loading
       const loading = this.$loading({
@@ -98,7 +109,9 @@ export default {
       // fetch data
       this.$api.book.findPage(this.pageForm).then((res) => {
         this.data = res.data
+
         this.tableData = this.data.content
+
         this.pagination = {
           pageSize: this.data.pageSize,
           pageCount: this.data.totalPages,
@@ -114,20 +127,26 @@ export default {
       this.updateData()
     },
     // CRUD buuton prepare
+    // 为 create 做准备
     createPrepare () {
       this.resetForm()
+
       this.type = 'create'
       let createId = this.pagination.total + 1
       this.submitForm.id = createId
       this.setCreator()
+
       this.openForm()
     },
+    // 为 update 做准备
     updatePrepare (id) {
       this.resetForm()
+
       this.type = 'update'
       this.submitForm.id = id
       this.submitForm = this.tableData[id]
       this.setLastUpdate()
+
       this.openForm()
     },
     // 表单复用实际 CURD 类型选择
@@ -142,7 +161,6 @@ export default {
       this.handlePromiseData(promise)
     },
     delete_ (id) {
-      id += 1
       let promise = this.$api.book.deleteBook(this.tableData[id])
       this.handlePromiseData(promise)
     },
@@ -150,6 +168,7 @@ export default {
       this.create()
     },
     // tools
+    // 重置表单
     resetForm () {
       let submitFormEmpty = {
         id: 0,
@@ -178,21 +197,26 @@ export default {
           this.error(res.message)
         })
     },
+    // 为表单设置创建者和时间
     setCreator () {
       this.submitForm.create_by = sessionStorage.getItem('user')
       this.submitForm.create_time = new Date().toISOString()
+
       this.setLastUpdate()
     },
+    // 为表单设置最后更新人和时间
     setLastUpdate () {
       this.submitForm.last_update_by = sessionStorage.getItem('user')
       this.submitForm.last_update_time = new Date().toISOString()
     },
+    // 开关表单
     closeForm () {
       this.isOpenForm = false
     },
     openForm () {
       this.isOpenForm = true
     },
+    // 错误信息
     error (message) {
       this.$message({
         message: message,
