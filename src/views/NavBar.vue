@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="Header-item ml10">
-      <router-link class="Header-link" to="/empty">
+      <router-link class="Header-link" to="/welcome">
         <img src="@/assets/whogo-sm.png" />
       </router-link>
     </div>
