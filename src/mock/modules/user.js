@@ -30,7 +30,7 @@ export function batchDelete () {
 export function findPage (params) {
   let findPageData = {
     code: 200,
-    msg: null,
+    msg: 'test',
     data: {
       pageNum: 1,
       pageSize: 9,

@@ -1,6 +1,6 @@
 import axios from '../axios'
 
-export const deleteCafemember = (data) => {
+export const batchDelete = (data) => {
   return axios({
     url: '/sysCafemember/delete',
     method: 'post',

@@ -63,7 +63,7 @@ export default {
     }
   },
   methods: {
-    submitForm (formName) {
+    async submitForm (formName) {
       const loading = this.$loading({
         lock: true,
         text: '加载中',
@@ -75,7 +75,7 @@ export default {
         password: this.loginForm.password,
         captcha: this.loginForm.captcha
       }
-      this.$api.login
+      await this.$api.login
         .login(userInfo)
         .then((res) => {
           if (res.msg != null) {

@@ -1,6 +1,6 @@
 import axios from '../axios'
 
-export const deleteCafe = (data) => {
+export const batchDelete = (data) => {
   return axios({
     url: '/sysCafe/delete',
     method: 'post',

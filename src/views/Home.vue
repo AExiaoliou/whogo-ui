@@ -36,6 +36,7 @@ export default {
 .page {
   z-index: 11;
   flex: 1;
+  overflow: auto;
 }
 .page-mask {
   padding: 2em 2rem;

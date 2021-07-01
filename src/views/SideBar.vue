@@ -7,6 +7,7 @@
       <el-menu-item index="/syscafemember">食堂会员管理</el-menu-item>
       <el-menu-item index="/sysbook">图书管理</el-menu-item>
       <el-menu-item index="/sysbookmember">图书馆会员管理</el-menu-item>
+      <el-menu-item index="/user">用户管理</el-menu-item>
       <el-menu-item index="/">通知公告</el-menu-item>
       <el-menu-item index="/">日志记录</el-menu-item>
       <el-menu-item index="/monitor">系统监控</el-menu-item>
@@ -39,7 +40,7 @@ export default {
   bottom: 0;
   margin: 0;
   overflow-y: auto;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .menu {
   min-height: 400px;

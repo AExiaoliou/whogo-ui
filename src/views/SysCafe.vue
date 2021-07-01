@@ -46,9 +46,10 @@
     <!-- 分页 -->
     <el-pagination
       :page-size="pagination.pageSize"
-      :pager-count="pagination.pageCount"
+      :page-count="pagination.pageCount"
       layout="prev, pager, next"
-      :current-page="pagination.current">
+      :current-page="pagination.current"
+      @current-change="changePage">
     </el-pagination>
   </div>
 </template>
@@ -94,7 +95,7 @@ export default {
   },
   methods: {
     // 更新数据
-    updateData () {
+    async updateData () {
       // Loading
       const loading = this.$loading({
         target: document.getElementById('page'),
@@ -104,23 +105,26 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       // fetch data
-      this.$api.cafe.findPage(this.pageForm).then((res) => {
-        this.data = res.data
-
-        this.tableData = this.data.content
-
-        this.pagination = {
-          pageSize: this.data.pageSize,
-          pageCount: this.data.totalPages,
-          total: this.data.totalSize,
-          current: this.data.pageNum
-        }
-      })
+      await this.$api.cafe.findPage(this.pageForm)
+        .then((res) => {
+          this.data = res.data
+        })
+        .catch(res => {
+          this.error(res.message)
+        })
       // close Loading
       loading.close()
+      this.tableData = this.data.content
+
+      this.pagination = {
+        pageSize: this.data.pageSize,
+        pageCount: this.data.totalPages,
+        total: this.data.totalSize,
+        current: this.data.pageNum
+      }
     },
     changePage (page) {
-      this.pageForm.pageNum += 1
+      this.pageForm.pageNum = page
       this.updateData()
     },
     // CRUD buuton prepare
@@ -136,12 +140,11 @@ export default {
       this.openForm()
     },
     // 为 update 做准备
-    updatePrepare (id) {
+    updatePrepare (row) {
       this.resetForm()
 
       this.type = 'update'
-      this.submitForm.id = id
-      this.submitForm = this.tableData[id]
+      this.submitForm = row
       this.setLastUpdate()
 
       this.openForm()
@@ -157,8 +160,8 @@ export default {
       let promise = this.$api.cafe.save(this.submitForm)
       this.handlePromiseData(promise)
     },
-    delete_ (id) {
-      let promise = this.$api.cafe.deleteBook(this.tableData[id])
+    delete_ (row) {
+      let promise = this.$api.cafe.batchDelete([row])
       this.handlePromiseData(promise)
     },
     update () {

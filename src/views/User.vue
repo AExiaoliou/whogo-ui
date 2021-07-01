@@ -2,18 +2,18 @@
   <div>
     <el-card>
       <el-table :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" stripe>
-        <el-table-column fixed prop="ID" width="100">
+        <el-table-column fixed prop="id" width="100">
           <!-- 新增 -->
           <template slot="header">
             <el-button @click="createPrepare" size="small" type="primary">新增...</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="user_name" label="姓名" width="120"> </el-table-column>
-        <el-table-column prop="workid" label="工号" width="150"> </el-table-column>
-        <el-table-column prop="sex" label="性别" width="120"> </el-table-column>
-        <el-table-column prop="create_by" label="创建用户" width="120"> </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="150"> </el-table-column>
-        <el-table-column prop="last_update_time" label="最近更新时间" width="150"> </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
+        <el-table-column prop="nickName" label="昵称" width="150"> </el-table-column>
+        <el-table-column prop="email" label="邮箱" width="120"> </el-table-column>
+        <el-table-column prop="mobile" label="手机" width="120"> </el-table-column>
+        <el-table-column prop="deptName" label="公司名称" width="120"> </el-table-column>
+        <el-table-column prop="roleNames" label="角色" width="150"> </el-table-column>
         <el-table-column fixed="right" width="200">
           <template slot="header">
             <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
@@ -31,14 +31,20 @@
     <!-- 表单对话框 -->
     <el-dialog :visible.sync="isOpenForm" append-to-body="true">
       <el-form :model="submitForm" ref="submitForm">
-        <el-form-item label="user_name">
-          <el-input v-model="submitForm.user_name"> </el-input>
+        <el-form-item label="name">
+          <el-input v-model="submitForm.name"> </el-input>
         </el-form-item>
         <el-form-item label="workid">
-          <el-input v-model="submitForm.workid"> </el-input>
+          <el-input v-model="submitForm.nickName"> </el-input>
         </el-form-item>
-        <el-form-item label="sex">
-          <el-input v-model="submitForm.sex"> </el-input>
+        <el-form-item label="email">
+          <el-input v-model="submitForm.email"> </el-input>
+        </el-form-item>
+        <el-form-item label="deptName">
+          <el-input v-model="submitForm.deptName"> </el-input>
+        </el-form-item>
+        <el-form-item label="roleNames">
+          <el-input v-model="submitForm.roleNames"> </el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -50,9 +56,10 @@
     <!-- 分页 -->
     <el-pagination
       :page-size="pagination.pageSize"
-      :pager-count="pagination.pageCount"
+      :page-count="pagination.pageCount"
       layout="prev, pager, next"
-      :current-page="pagination.current">
+      :current-page="pagination.current"
+      @current-change="changePage">
     </el-pagination>
   </div>
 </template>
@@ -63,7 +70,7 @@ export default {
   data () {
     return {
       // 请求响应
-      data: null,
+      data: {},
       // 表格数据
       tableData: [],
       // 分页信息
@@ -119,7 +126,7 @@ export default {
   },
   methods: {
     // 更新数据
-    updateData () {
+    async updateData () {
       // Loading
       const loading = this.$loading({
         target: document.getElementById('page'),
@@ -129,23 +136,26 @@ export default {
         background: 'rgba(0, 0, 0, 0.7)'
       })
       // fetch data
-      this.$api.user.findPage(this.pageForm).then((res) => {
-        this.data = res.data
-
-        this.tableData = this.data.content
-
-        this.pagination = {
-          pageSize: this.data.pageSize,
-          pageCount: this.data.totalPages,
-          total: this.data.totalSize,
-          current: this.data.pageNum
-        }
-      })
+      await this.$api.user.findPage(this.pageForm)
+        .then((res) => {
+          this.data = res.data
+        })
+        .catch(res => {
+          this.error(res.message)
+        })
       // close Loading
       loading.close()
+      this.tableData = this.data.content
+
+      this.pagination = {
+        pageSize: this.data.pageSize,
+        pageCount: this.data.totalPages,
+        total: this.data.totalSize,
+        current: this.data.pageNum
+      }
     },
     changePage (page) {
-      this.pageForm.pageNum += 1
+      this.pageForm.pageNum = page
       this.updateData()
     },
     // CRUD buuton prepare
@@ -161,12 +171,11 @@ export default {
       this.openForm()
     },
     // 为 update 做准备
-    updatePrepare (id) {
+    updatePrepare (row) {
       this.resetForm()
 
       this.type = 'update'
-      this.submitForm.id = id
-      this.submitForm = this.tableData[id]
+      this.submitForm = row
       this.setLastUpdate()
 
       this.openForm()
@@ -182,8 +191,8 @@ export default {
       let promise = this.$api.user.save(this.submitForm)
       this.handlePromiseData(promise)
     },
-    delete_ (id) {
-      let promise = this.$api.user.deleteBook(this.tableData[id])
+    delete_ (row) {
+      let promise = this.$api.user.batchDelete([row])
       this.handlePromiseData(promise)
     },
     update () {
@@ -241,15 +250,15 @@ export default {
     },
     // 为表单设置创建者和时间
     setCreator () {
-      this.submitForm.create_by = sessionStorage.getItem('user')
-      this.submitForm.create_time = new Date().toISOString()
+      this.submitForm.createBy = sessionStorage.getItem('user')
+      this.submitForm.createTime = new Date().toISOString()
 
       this.setLastUpdate()
     },
     // 为表单设置最后更新人和时间
     setLastUpdate () {
-      this.submitForm.last_update_by = sessionStorage.getItem('user')
-      this.submitForm.last_update_time = new Date().toISOString()
+      this.submitForm.lastUpdateBy = sessionStorage.getItem('user')
+      this.submitForm.lastUpdateTime = new Date().toISOString()
     },
     // 开关表单
     closeForm () {
