@@ -8,8 +8,9 @@ import SysCafe from '@/views/SysCafe'
 import SysCafemember from '@/views/SysCafemember'
 import SysStudent from '@/views/SysStudent'
 import SysTeacher from '@/views/SysTeacher'
-import User from '@/views/User'
+import Team from '@/views/Team'
 import Test from '@/views/Test'
+import User from '@/views/User'
 import Welcome from '@/views/Welcome'
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -60,6 +61,10 @@ const router = new Router({
         {
           path: 'user',
           component: User
+        },
+        {
+          path: 'team',
+          component: Team
         }
       ]
     },
