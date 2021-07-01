@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <el-table :data="tableData" stripe>
+      <el-table :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" stripe>
         <!-- 新增按钮 -->
         <el-table-column fixed prop="ID" width="100">
           <!-- 新增 -->
@@ -80,7 +80,8 @@ export default {
       // 是否打开表单
       isOpenForm: false,
       // CRUD 类型
-      formType: 'create'
+      formType: 'create',
+      search: ''
     }
   },
   created () {

@@ -2,7 +2,7 @@
   <div>
     <!-- 表格主体 -->
     <el-card>
-      <el-table :data="tableData" stripe>
+      <el-table :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" stripe>
         <el-table-column fixed prop="id" width="100">
           <!-- 新增 -->
           <template slot="header">
@@ -17,7 +17,7 @@
         <el-table-column prop="last_update_time" label="最近更新时间" width="150"> </el-table-column>
         <el-table-column fixed="right" width="150" align="right">
           <template slot="header">
-            <el-input size="mini" placeholder="输入关键字搜索" />
+            <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
           </template>
           <!-- 编辑删除 -->
           <template slot-scope="scope">
