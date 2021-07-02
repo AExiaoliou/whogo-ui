@@ -31,19 +31,22 @@
     <!-- 表单对话框 -->
     <el-dialog :visible.sync="isOpenForm" append-to-body="true">
       <el-form :model="submitForm" ref="submitForm">
-        <el-form-item label="name">
+        <el-form-item label="姓名">
           <el-input v-model="submitForm.name"> </el-input>
         </el-form-item>
-        <el-form-item label="workid">
+        <el-form-item label="昵称">
           <el-input v-model="submitForm.nickName"> </el-input>
         </el-form-item>
-        <el-form-item label="email">
+        <el-form-item label="邮箱">
           <el-input v-model="submitForm.email"> </el-input>
         </el-form-item>
-        <el-form-item label="deptName">
+        <el-form-item label="手机">
+          <el-input v-model="submitForm.mobile"> </el-input>
+        </el-form-item>
+        <el-form-item label="公司">
           <el-input v-model="submitForm.deptName"> </el-input>
         </el-form-item>
-        <el-form-item label="roleNames">
+        <el-form-item label="角色">
           <el-input v-model="submitForm.roleNames"> </el-input>
         </el-form-item>
       </el-form>

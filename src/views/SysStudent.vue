@@ -10,7 +10,11 @@
         </el-table-column>
         <el-table-column prop="user_name" label="姓名" width="120"> </el-table-column>
         <el-table-column prop="workid" label="学号" width="120"> </el-table-column>
-        <el-table-column prop="sex" label="性别" width="120"> </el-table-column>
+        <el-table-column prop="sex" label="性别" width="120" >
+          <template slot-scope="scope">
+            {{ scope.cellValue ? '男' : '女' }}
+          </template>
+        </el-table-column>
         <el-table-column prop="create_by" label="创建用户" width="120"> </el-table-column>
         <el-table-column prop="create_time" label="创建时间" width="150"> </el-table-column>
         <el-table-column prop="last_update_time" label="最近更新时间" width="150"> </el-table-column>
@@ -31,14 +35,15 @@
     <!-- 表单对话框 -->
     <el-dialog :visible.sync="isOpenForm" append-to-body="true">
       <el-form :model="submitForm" ref="submitForm">
-        <el-form-item label="user_name">
+        <el-form-item label="姓名">
           <el-input v-model="submitForm.user_name"> </el-input>
         </el-form-item>
-        <el-form-item label="workid">
+        <el-form-item label="学号">
           <el-input v-model="submitForm.workid"> </el-input>
         </el-form-item>
-        <el-form-item label="sex">
-          <el-input v-model="submitForm.sex"> </el-input>
+        <el-form-item label="性别">
+          <el-radio v-model="submitForm.sex" label="0"> 男 </el-radio>
+          <el-radio v-model="submitForm.sex" label="1"> 女 </el-radio>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">

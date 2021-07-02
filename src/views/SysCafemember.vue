@@ -30,10 +30,10 @@
     <!-- 表单对话框 -->
     <el-dialog :visible.sync="isOpenForm" append-to-body="true">
       <el-form :model="submitForm" ref="submitForm">
-        <el-form-item label="name">
+        <el-form-item label="姓名">
           <el-input v-model="submitForm.name"> </el-input>
         </el-form-item>
-        <el-form-item label="isbn">
+        <el-form-item label="价格">
           <el-input v-model="submitForm.price"> </el-input>
         </el-form-item>
       </el-form>
