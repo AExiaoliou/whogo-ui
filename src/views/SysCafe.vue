@@ -28,7 +28,7 @@
       </el-table>
     </el-card>
     <!-- 表单对话框 -->
-    <el-dialog :visible.sync="isOpenForm" append-to-body="true">
+    <el-dialog :visible.sync="isOpenForm" append-to-body>
       <el-form :model="submitForm" ref="submitForm">
         <el-form-item label="菜名">
           <el-input v-model="submitForm.name"> </el-input>
