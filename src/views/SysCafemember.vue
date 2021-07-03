@@ -9,7 +9,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-        <el-table-column prop="price" label="价格" width="120"> </el-table-column>
+        <el-table-column prop="price" label="余额" width="120"> </el-table-column>
         <el-table-column prop="createBy" label="创建用户" width="120"></el-table-column>
         <el-table-column prop="createTime" label="创建时间" width="150"> </el-table-column>
         <el-table-column prop="lastUpdateTime" label="最近更新时间" width="150"> </el-table-column>
