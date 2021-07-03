@@ -51,6 +51,10 @@
         <cpu-board />
       </el-card>
     </div>
+    <div class="block" />
+    <el-card>
+      <iframe src="http://119.23.241.152:9998/druid/sql.html" />
+    </el-card>
   </div>
 </template>
 
