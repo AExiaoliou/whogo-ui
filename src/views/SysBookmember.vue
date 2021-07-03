@@ -3,16 +3,16 @@
     <el-card>
       <el-table :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))" stripe>
         <!-- 新增按钮 -->
-        <el-table-column fixed prop="ID" width="100">
+        <el-table-column fixed prop="id" width="100">
           <!-- 新增 -->
           <template slot="header">
             <el-button @click="createPrepare" size="small" type="primary">新增...</el-button>
           </template>
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-        <el-table-column prop="create_by" label="创建用户" width="150"> </el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="150"> </el-table-column>
-        <el-table-column prop="last_update_time" label="最近更新时间" width="150"> </el-table-column>
+        <el-table-column prop="createBy" label="创建用户" width="120"></el-table-column>
+        <el-table-column prop="createTime" label="创建时间" width="150"> </el-table-column>
+        <el-table-column prop="lastUpdateTime" label="最近更新时间" width="150"> </el-table-column>
         <el-table-column fixed="right" width="200">
           <template slot="header">
             <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
@@ -71,10 +71,10 @@ export default {
       submitForm: {
         id: 0,
         name: '',
-        create_by: '',
-        create_time: '',
-        last_update_by: '',
-        last_update_time: ''
+        createBy: '',
+        createTime: '',
+        lastUpdateBy: '',
+        lastUpdateTime: ''
       },
       // 分页请求
       pageForm: config.defaultPage,
@@ -129,8 +129,7 @@ export default {
       this.resetForm()
 
       this.type = 'create'
-      let createId = this.pagination.total + 1
-      this.submitForm.id = createId
+
       this.setCreator()
 
       this.openForm()
@@ -169,10 +168,10 @@ export default {
       let submitFormEmpty = {
         id: 0,
         name: '',
-        create_by: '',
-        create_time: '',
-        last_update_by: '',
-        last_update_time: ''
+        createBy: '',
+        createTime: '',
+        lastUpdateBy: '',
+        lastUpdateTime: ''
       }
       this.submitForm = submitFormEmpty
     },
@@ -193,15 +192,15 @@ export default {
     },
     // 为表单设置创建者和时间
     setCreator () {
-      this.submitForm.create_by = sessionStorage.getItem('user')
-      this.submitForm.create_time = new Date().toISOString()
+      this.submitForm.createBy = sessionStorage.getItem('user')
+      this.submitForm.createTime = new Date().toISOString()
 
       this.setLastUpdate()
     },
     // 为表单设置最后更新人和时间
     setLastUpdate () {
-      this.submitForm.last_update_by = sessionStorage.getItem('user')
-      this.submitForm.last_update_time = new Date().toISOString()
+      this.submitForm.lastUpdateBy = sessionStorage.getItem('user')
+      this.submitForm.lastUpdateTime = new Date().toISOString()
     },
     // 开关表单
     closeForm () {
