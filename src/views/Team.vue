@@ -1,14 +1,13 @@
 <template>
   <el-card>
     <img class="fit-picture"
-      src="@/assets/WhoGo.png"
-      alt="Grapefruit slice atop a pile of other slices">
+      src="@/assets/WhoGo.png">
     <div slot="header" class="clearfix">
     <span >欢迎来到WhoGo！</span>
-  </div>
-  <div :key="o" class="text item">
-    小组成员：谢宇杰、何天成、赵芝锴、杨翌、梁慧敏
-  </div>
+    </div>
+    <div class="text item">
+      小组成员：谢宇杰、何天成、赵芝锴、杨翌、梁惠敏
+    </div>
   </el-card>
 </template>
 

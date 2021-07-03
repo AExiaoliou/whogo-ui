@@ -12,9 +12,9 @@
         <el-table-column prop="name" label="书名" width="120"> </el-table-column>
         <el-table-column prop="count" label="数量" width="120"> </el-table-column>
         <el-table-column prop="isbn" label="ISBN" width="250"></el-table-column>
-        <el-table-column prop="create_by" label="创建用户" width="120"></el-table-column>
-        <el-table-column prop="create_time" label="创建时间" width="150"> </el-table-column>
-        <el-table-column prop="last_update_time" label="最近更新时间" width="150"> </el-table-column>
+        <el-table-column prop="createBy" label="创建用户" width="120"></el-table-column>
+        <el-table-column prop="createTime" label="创建时间" width="150"> </el-table-column>
+        <el-table-column prop="lastUpdateTime" label="最近更新时间" width="150"> </el-table-column>
         <el-table-column fixed="right" width="150" align="right">
           <template slot="header">
             <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
@@ -39,7 +39,7 @@
           <el-input v-model="submitForm.isbn"> </el-input>
         </el-form-item>
         <el-form-item label="count">
-          <el-input v-model="submitForm.count"> </el-input>
+          <el-input v-model="submitForm.count" type="number"> </el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -81,10 +81,10 @@ export default {
         name: '',
         isbn: '',
         count: 0,
-        create_by: '',
-        create_time: '',
-        last_update_by: '',
-        last_update_time: ''
+        createBy: '',
+        createTime: '',
+        lastUpdateBy: '',
+        lastUpdateTime: ''
       },
       // 分页请求
       pageForm: config.defaultPage,
@@ -135,11 +135,10 @@ export default {
     // CRUD buuton prepare
     // 为 create 做准备
     createPrepare () {
+      console.log(this.submitForm)
       this.resetForm()
 
       this.type = 'create'
-      let createId = this.pagination.total + 1
-      this.submitForm.id = createId
       this.setCreator()
 
       this.openForm()
@@ -162,6 +161,7 @@ export default {
     },
     // CRUD
     create () {
+      console.log(this.submitForm)
       let promise = this.$api.book.save(this.submitForm)
       this.handlePromiseData(promise)
     },
@@ -180,11 +180,12 @@ export default {
         name: '',
         isbn: '',
         count: 0,
-        create_by: '',
-        create_time: '',
-        last_update_by: '',
-        last_update_time: ''
+        createBy: '',
+        createTime: '',
+        lastUpdateBy: '',
+        lastUpdateTime: ''
       }
+      // console.log(this.submitForm)
       this.submitForm = submitFormEmpty
     },
     // 这个可能要要写到工具里面
@@ -204,15 +205,15 @@ export default {
     },
     // 为表单设置创建者和时间
     setCreator () {
-      this.submitForm.create_by = sessionStorage.getItem('user')
-      this.submitForm.create_time = new Date().toISOString()
+      this.submitForm.createBy = sessionStorage.getItem('user')
+      this.submitForm.createTime = new Date().toISOString()
 
       this.setLastUpdate()
     },
     // 为表单设置最后更新人和时间
     setLastUpdate () {
-      this.submitForm.last_update_by = sessionStorage.getItem('user')
-      this.submitForm.last_update_time = new Date().toISOString()
+      this.submitForm.lastUpdateBy = sessionStorage.getItem('user')
+      this.submitForm.lastUpdateTime = new Date().toISOString()
     },
     // 开关表单
     closeForm () {
