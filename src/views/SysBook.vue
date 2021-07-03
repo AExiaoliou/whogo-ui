@@ -30,16 +30,16 @@
       </el-table>
     </el-card>
     <!-- 表单对话框 -->
-    <el-dialog :visible.sync="isOpenForm" append-to-body="true">
+    <el-dialog :visible.sync="isOpenForm" append-to-body>
       <el-form :model="submitForm" ref="submitForm">
-        <el-form-item label="name">
+        <el-form-item label="书名">
           <el-input v-model="submitForm.name"> </el-input>
         </el-form-item>
-        <el-form-item label="isbn">
+        <el-form-item label="ISBN">
           <el-input v-model="submitForm.isbn"> </el-input>
         </el-form-item>
-        <el-form-item label="count">
-          <el-input v-model="submitForm.count" type="number"> </el-input>
+        <el-form-item label="数量">
+          <el-input v-model="submitForm.count"> </el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
