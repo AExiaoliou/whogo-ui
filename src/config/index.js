@@ -1,5 +1,5 @@
 export default {
-  baseUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:8001' : 'http://119.23.241.152:9998',
+  baseUrl: process.env.NODE_ENV !== 'production' ? 'http://localhost:8001' : 'http://119.23.241.152:8888/admin-api',
   Mock: process.env.NODE_ENV !== 'production',
   // Mock: false
   defaultPage: {
